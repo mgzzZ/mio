@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mio/base/m_widget.dart';
 import 'package:mio/widgets/m_text.dart';
 
 void main() {
@@ -50,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
   void _incrementCounter() {
+    print(MText('You have pushed the button this many times:').toMap());
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -78,9 +80,18 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
+            MDynamicDWidget(data: {
+              'name': 'MText',
+              'text': '这是动态化解析的文本:',
+              'style': {
+                'color': 4278190080,
+                'fontSize': 12.0,
+                'fontWeight': 'regular',
+                'fontFamily': ''
+              },
+              'overflow': 'ellipsis',
+              'textAlign': 'left'
+            }),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
