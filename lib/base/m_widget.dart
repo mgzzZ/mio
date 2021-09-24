@@ -25,7 +25,26 @@ abstract class MWidget extends StatelessWidget with FormatWidget {
   Map<String, dynamic> toMap({BuildContext? context});
 }
 
-class MStatelessWidget extends MWidget {
+class MContainer extends MWidget {
+  final MWidget? child;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final Color? color;
+  final double? width;
+  final double? height;
+  final Decoration? decoration;
+  final BoxConstraints? constraints;
+  MContainer({
+    required this.child,
+    this.padding,
+    this.margin,
+    this.color,
+    this.width,
+    this.height,
+    this.decoration,
+    this.constraints,
+  });
+
   // @override
   // MWidget formMap(Map data) {
   //   return MStatelessWidget();
@@ -33,12 +52,30 @@ class MStatelessWidget extends MWidget {
 
   @override
   Map<String, dynamic> toMap({BuildContext? context}) {
-    return {'name': 'MStatelessWidget'};
+    return {
+      'name': 'MContainer',
+      if (child != null) ...{'child': child!.toMap(context: context)},
+      if (color != null) ...{'color': color!.value},
+      if (width != null) ...{'width': width},
+      if (height != null) ...{'height': height},
+      if (margin != null) ...{'margin': margin},
+      if (padding != null) ...{'padding': padding},
+      if (decoration != null) ...{'decoration': decoration},
+      if (constraints != null) ...{'constraints': constraints},
+    };
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: child,
+      padding: padding,
+      margin: margin,
+      height: height,
+      width: width,
+      constraints: constraints,
+      decoration: decoration,
+    );
   }
 }
 
