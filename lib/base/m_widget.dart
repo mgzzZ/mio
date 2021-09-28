@@ -8,7 +8,7 @@ import 'package:mio/widgets/m_text.dart';
 /// Describe:
 ///
 
-abstract class FormatWidget {
+mixin FormatWidget {
   @protected
   Map<String, dynamic> toMap();
 
@@ -86,28 +86,28 @@ class MDynamicDWidget extends MWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget child = initData(data);
+    Widget child = parse(data);
     return child;
   }
 
-  Widget initData(Map<String, dynamic> data) {
+  List<Widget> parseChildren(Map<String, dynamic> data) {
+    List<Map<String, dynamic>> sub = data['children'];
+    List<Widget> list = [];
+    list = sub.map((e) => parse(e)).toList();
+    return list;
+  }
+
+  Widget parseChild(Map<String, dynamic> data) {
+    return parse(data['child']);
+  }
+
+  Widget parse(Map<String, dynamic> data) {
     // if (!data.safeContains('child') && !data.safeContains('children')) {
     //   return Container();
     // }
     if (data.safeContains('child')) {
-      return MDynamicDWidget(data: data['child']);
+      return parseChild(data['child']);
     }
-
-    // if (data.safeContains('children')) {
-    //   //TODO: 多个未处理
-    //   Map<String, dynamic> sub = data['children'];
-    //   List<Widget> list = [];
-    //   sub.forEach((key, value) {
-    //     list.add(initData({key: value}));
-    //   });
-    //
-    //   return list;
-    // }
 
     switch (data['name']) {
       case 'MText':
