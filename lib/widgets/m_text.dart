@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mio/base/m_widget.dart';
-import 'package:mio/etx/map_etx.dart';
-import 'package:mio/etx/string_etx.dart';
-import 'package:mio/util/enum_util.dart';
+import 'package:mio/common/etx/map_etx.dart';
+import 'package:mio/common/etx/string_etx.dart';
+import 'package:mio/common/util/enum_util.dart';
 
 ///
 /// Created by zgm on 2021/9/18

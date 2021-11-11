@@ -1,0 +1,29 @@
+  targets:
+    $default:
+      builders:
+        mio|m_dynamic_builder:
+          enabled: true
+          options: { 'write': true }
+          generate_for:
+            exclude: ['**.m.dart']
+
+
+
+  builders:
+    m_dynamic_builder:
+      import: "package:mio/builder.dart"
+      builder_factories: ["mDynamicBuilder"]
+      build_extensions: {".dart": [".m.dart"]}
+      auto_apply: dependents
+      build_to: source
+      applies_builders: ["source_gen|combining_builder"]
+
+    ast_node_map_builder:
+      import: 'package:mio/widget_to_dsl/mio_ast_check_gen.dart'
+      builder_factories: [ 'AstNodeMapBuilder' ]
+      build_extensions: { '.dart': [ '.g.dart' ] }
+      auto_apply: root_package
+      build_to: source
+
+
+

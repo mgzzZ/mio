@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mio/etx/map_etx.dart';
-import 'package:mio/util/enum_util.dart';
+import 'package:mio/common//etx/map_etx.dart';
+import 'package:mio/common//util/enum_util.dart';
 import 'package:mio/widgets/m_text.dart';
 
 ///

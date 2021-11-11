@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 ///
 
 extension StringExt on String {
-  FontWeight? toFontWeight() {
+  FontWeight toFontWeight() {
     switch (this) {
       case 'normal':
       case 'regular':
@@ -17,6 +17,7 @@ extension StringExt on String {
       case 'bold':
         return FontWeight.w600;
       default:
+        return FontWeight.w400;
     }
   }
 }
